@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:34:51 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/01/30 14:55:40 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:15:11 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 	long	result;
-	int	y;
+	int		y;
 
 	sign = 1;
 	result = 0;
@@ -36,27 +36,27 @@ int	ft_atoi(const char *str)
 		result = result * 10 + str[i] - 48;
 		i++;
 	}
-	if ((y * result) > 2147483647 || (y * result) < -2147483648)
-		return(printf("Error : INT_MAX or INT_MIN"), 0);
 	return (result * sign);
 }
 
-int ft_parse(char **argv)
+int	ft_parse(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (argv[i])
-	{	
+	{
 		j = 0;
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))
 				return (printf("Error on Argv[%d][%d]", i, j), 1);
 			j++;
-
 		}
+		if ((ft_atoi(argv[i]) == 0 && i < 5) || (ft_atoi(argv[i]) > 200
+				&& i == 1) || ft_atoi(argv[i]) <= 0)
+			return (printf("Error\n"), 1);
 		i++;
 	}
 	return (0);
